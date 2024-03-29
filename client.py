@@ -1,4 +1,5 @@
 import socket
+from custom_string import CustomString
 
 HEADER = 64
 DISCONNECT_MSG = "!DISCONNECT"
@@ -8,20 +9,21 @@ PORT = 8070
 
 class Client:
     def __init__(self, server, port) -> None:
+        self.cs = CustomString()
         self.servername = server
         self.port = port
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client.connect((self.servername, self.port))
-        self.send("Hello GUYS!")
+        self.send("This an assignment done !")
 
     def send(self, msg: str):
-        print("SENDING")
-        msg = msg.encode()
+        print("{CLIENT SIDE LOGS} : PACKING THE STRING")
+        msg = self.cs.pack(msg).encode()
         length = str(len(msg)).encode()
         length += b' ' * (HEADER-len(length))
         self.client.send(length)
         self.client.send(msg)
-        print("SENT")
+        print("{CLIENT SIDE LOGS} : BIT STREAM SENT")
 
 
 if __name__ == "__main__":

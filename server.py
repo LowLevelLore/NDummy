@@ -1,8 +1,12 @@
 import socket
 import threading
+from custom_string import CustomString
 
 HEADER = 64
 DISCONNECT_MSG = "!DISCONNECT"
+
+
+cs = CustomString()
 
 
 class Server:
@@ -21,7 +25,7 @@ class Server:
         while connected:
             try:
                 length = int(conn.recv(HEADER).decode())
-                msg = conn.recv(length).decode()
+                msg = cs.unpack(conn.recv(length).decode())
                 if (msg == DISCONNECT_MSG):
                     connected = False
                 print(f"[{addr}] : {msg}")
@@ -36,7 +40,7 @@ class Server:
             thread = threading.Thread(
                 target=Server.handle_client, args=(conn, addr))
             thread.start()
-            print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}.")
+            print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}.\n")
 
 
 if __name__ == "__main__":

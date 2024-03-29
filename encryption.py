@@ -1,6 +1,7 @@
 from math import ceil, floor, sqrt
 import numpy as np
 
+
 def encrypt(s: str):
     l = len(s)
     cols = ceil(sqrt(l))
@@ -52,4 +53,4 @@ def decrypt(s: str):
 
 
 if __name__ == "__main__":
-    print(decrypt(encrypt("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s")))
+    print(decrypt(encrypt("Hello World")))
