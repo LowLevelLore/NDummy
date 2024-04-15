@@ -1,4 +1,6 @@
+# LZW Compression/Encoding
 
+# Dictionary based compression
 def compress(message: str) -> list[int]:
     table: dict[str, int] = {}
 

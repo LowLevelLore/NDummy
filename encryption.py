@@ -1,7 +1,7 @@
 from math import ceil, floor, sqrt
 import numpy as np
 
-
+# Compression, create a matrix from the given string and read it column wise
 def encrypt(s: str):
     l = len(s)
     cols = ceil(sqrt(l))
@@ -31,7 +31,7 @@ def encrypt(s: str):
 
     return encrypted
 
-
+# Decompression, create a matrix from the recieved message and read it row wise
 def decrypt(s: str):
     l = len(s)
     b = ceil(sqrt(l))

@@ -14,7 +14,15 @@ class Client:
         self.port = port
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client.connect((self.servername, self.port))
-        self.send("This an assignment done !")
+        while (True):
+            message = input("Enter a message : ")
+            if (message == DISCONNECT_MSG):
+                self.send(DISCONNECT_MSG)
+                break
+            if (message):
+                self.send(message)
+            else:
+                pass
 
     def send(self, msg: str):
         print("{CLIENT SIDE LOGS} : PACKING THE STRING")
